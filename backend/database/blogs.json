@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": "World dezaster",
+        "slug": "world-dezaster",
+        "content": "Something happaned somewhere",
+        "tags": ["danger", "end of life"
+        ],
+        "comments": [
+            {
+                "user_id": 2,
+                "comments": "I can't believe"
+            }
+        ]
+    }
+]

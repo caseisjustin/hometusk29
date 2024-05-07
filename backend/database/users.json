@@ -18,30 +18,12 @@
         "gender": ""
     },
     {
-        "id": 3,
-        "username": "Megaman",
-        "password": "oksdfk",
-        "fullname": "weth",
-        "age": 34,
-        "email": "uiodasdedd@gmail.com",
-        "gender": "M"
-    },
-    {
         "id": 4,
         "username": "Megaman",
         "password": "oksdfk",
-        "fullname": "weth",
+        "fullname": "Wehavechanged ",
         "age": 34,
         "email": "uiofdasdedde@gmail.com",
-        "gender": "M"
-    },
-    {
-        "id": 4,
-        "username": "Hoshimboy",
-        "password": "ok*/744sdfk",
-        "fullname": "weth",
-        "age": 34,
-        "email": "heloworld@gmail.com",
         "gender": "M"
     }
 ]

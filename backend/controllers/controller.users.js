@@ -50,23 +50,31 @@ export const registrUser = async (req, res) => {
 
 export const loginUser = async (req, res)=>{
     let users = await fileRead("users.json")
-    const {email, username, password} = req.body
-    if(!users)
-        res.send("Error reading userdata")
-    else{
-        users = await JSON.parse(users)
-        let check = false
-        users.forEach(user => {
-            if((user.email == email || user.username == username) && user.password == password){
-                check = true
-                res.send(`Welcome ${user.username}`)
+    try{
+        const {email, username, password} = req.body
+        if(email.length < 3 || username.length < 3){
+            res.send("Not enough charachter in username or email need more than 3")
+        }
+        else
+            if(!users)
+                res.send("Error reading userdata")
+            else{
+                users = await JSON.parse(users)
+                let check = false
+                users.forEach(user => {
+                    if((user.email == email || user.username == username) && user.password == password){
+                        check = true
+                        res.send(`Welcome ${user.username}`)
+                    }
+                    else if((user.email == email || user.username == username) && user.password != password){
+                        check = true
+                        res.status(400).send("Incorrect password")
+                    }
+                });
+                if(!check)
+                    res.send(`No such user\nPlease register first`)
             }
-            else if((user.email == email || user.username == username) && user.password != password){
-                check = true
-                res.status(400).send("Incorrect password")
-            }
-        });
-        if(!check)
-            res.send(`No such user\nPlease register first`)
+    }catch(err){
+        res.status(400).send("No data provided")
     }
 }
