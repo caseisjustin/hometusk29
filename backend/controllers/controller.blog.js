@@ -28,23 +28,12 @@ export const createBlog = async (req, res) => {
         res.status(200).send("ok")
     else{
         blogs = await JSON.parse(blogs)
-        const {id} = req.body
-        let check = false
-        blogs.forEach(blogs => {
-            if(blogs.id == id){
-                check = true
-            }
-        });
-        if(check)
-            res.status(400).send(`this blogs with id ${id} already exists`)
-        else{
-            blogs.push({id: blogs[blogs.length - 1].id + 1, ...req.body})
-            blogs = fileWrite("blogs.json", JSON.stringify(blogs))
-            if(!blogs)
-                res.send("Couldn't write data to file")
-            else
-                res.status(201).send("Registered successfuly")
-        }
+        blogs.push({id: blogs[blogs.length - 1].id + 1, ...req.body})
+        blogs = fileWrite("blogs.json", JSON.stringify(blogs))
+        if(!blogs)
+            res.send("Couldn't write data to file")
+        else
+            res.status(201).send("Registered successfuly")
     }
 }
 
