@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post("/", createBlog)
 router.get("/", getBlog)
-router.put("/:id", updateBlog)
-router.delete("/:id", deleteBlog)
+router.put("/", updateBlog)
+router.delete("/", deleteBlog)
 
 export default router;

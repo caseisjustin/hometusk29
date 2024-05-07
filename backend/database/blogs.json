@@ -1,16 +1,1 @@
-[
-    {
-        "id": 1,
-        "title": "World dezaster",
-        "slug": "world-dezaster",
-        "content": "Something happaned somewhere",
-        "tags": ["danger", "end of life"
-        ],
-        "comments": [
-            {
-                "user_id": 2,
-                "comments": "I can't believe"
-            }
-        ]
-    }
-]
+[{"id":1,"tittle":"Dangerous climate","slug":"dangerous-climate","content":"disaster","tags":"danger, death, end of world","comments":[{"user_id":3,"comments":"I can't believe"}]},{"0":{"tittle":"string","slug":"string","content":"string","tags":"string","comments":[{"user_id":"number","comments":"string"}]},"id":2},{"0":{"tittle":"Something","slug":"Somewhere","content":"happened","tags":"nonsense","comments":[{"user_id":5,"comments":"Wait for me"}]},"id":3}]

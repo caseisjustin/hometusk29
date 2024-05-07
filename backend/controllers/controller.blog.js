@@ -28,15 +28,15 @@ export const createBlog = async (req, res) => {
         res.status(200).send("ok")
     else{
         blogs = await JSON.parse(blogs)
-        const {email} = req.body
+        const {id} = req.body
         let check = false
         blogs.forEach(blogs => {
-            if(blogs.email == email){
+            if(blogs.id == id){
                 check = true
             }
         });
         if(check)
-            res.status(400).send(`this blogs with email ${email} already exists`)
+            res.status(400).send(`this blogs with id ${id} already exists`)
         else{
             blogs.push({id: blogs[blogs.length - 1].id + 1, ...req.body})
             blogs = fileWrite("blogs.json", JSON.stringify(blogs))
@@ -65,17 +65,17 @@ export const updateBlog = async (req, res) => {
     try {
         let blogs = await fileRead("blogs.json")
         blogs = await JSON.parse(blogs)
-        console.log(req.params)
+        const {id, title, slug, content, tags, comments} = req.body
         let checker = false
-        if (req.params.id) {
+        if (req.body.id) {
             for (const i in blogs) {
-                if (blogs[i].id == req.params.id) {
+                if (blogs[i].id == req.body.id) {
                     checker = true
-                    blogs[i].email = email || blogs[i].email
-                    blogs[i].username = username || blogs[i].username
-                    blogs[i].fullname = fullname || blogs[i].fullname
-                    blogs[i].age = age || blogs[i].age
-                    blogs[i].gender = gender || blogs[i].gender
+                    blogs[i].title = title || blogs[i].title
+                    blogs[i].slug = slug || blogs[i].slug
+                    blogs[i].content = content || blogs[i].content
+                    blogs[i].tags = tags || blogs[i].tags
+                    blogs[i].comments = comments || blogs[i].comments
                 }
             }
         }
@@ -97,19 +97,19 @@ export const deleteBlog = async (req, res) => {
     try {
         let blogs = await fileRead("blogs.json")
         blogs = await JSON.parse(blogs)
-        const { email, username } = req.body
+        const { id } = req.body
         let checker = false
-        if (email) {
+        if (id) {
             for (const i in blogs) {
-                if (blogs[i].email == email) {
+                if (blogs[i].id == id) {
                     checker = true
                     blogs.splice(i, 1)
                 }
             }
         }
-        else if (username) {
+        else if (id) {
             for (const i in blogs) {
-                if (blogs[i].username == username) {
+                if (blogs[i].id == id) {
                     checker = true
                     blogs.splice(i, 1)
                 }
@@ -119,7 +119,7 @@ export const deleteBlog = async (req, res) => {
             blogs = JSON.stringify(blogs)
             let ch = await fileWrite("blogs.json", blogs)
             if (!ch) {
-                res.send("Error writing dataprofile")
+                res.send("Error writing blogData")
             }
             else
                 res.send("DELETED")
